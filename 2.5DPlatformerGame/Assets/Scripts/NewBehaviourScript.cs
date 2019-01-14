@@ -39,7 +39,7 @@ public class NewBehaviourScript : MonoBehaviour {
         }
         if (Input.GetKeyDown("w") && isGrounded == true)
         {
-            isGrounded = false;
+            //isGrounded = false; if you execute this code it will stick to the platform which we don't want
             rb.velocity = Vector3.up * jumpSpeed;
 
 

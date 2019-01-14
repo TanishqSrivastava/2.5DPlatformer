@@ -18,7 +18,7 @@ public class Follow : MonoBehaviour {
     // Update is called once per frame
     void LateUpdate () {
         newPosition.x = tran.position.x;
-        newPosition.y = transform.position.y;
+        newPosition.y = tran.position.y;
         newPosition.z = transform.position.z;
         transform.position = newPosition;
 	}
