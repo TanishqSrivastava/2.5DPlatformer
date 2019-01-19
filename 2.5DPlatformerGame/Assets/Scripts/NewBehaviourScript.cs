@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class NewBehaviourScript : MonoBehaviour
+{
     private float moveInputX;
     private float moveInputNegatX;
     public Transform tran;
@@ -14,8 +15,9 @@ public class NewBehaviourScript : MonoBehaviour {
     public float gravity;
     public float speed;
     // Use this for initialization
-	void Start () {
-       
+    void Start()
+    {
+
         tran = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
         speed = 10;
@@ -24,7 +26,8 @@ public class NewBehaviourScript : MonoBehaviour {
     // Update is called once per frame
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Ground") {
+        if (collision.collider.tag == "Ground")
+        {
             isGrounded = true;
 
         }
@@ -50,14 +53,16 @@ public class NewBehaviourScript : MonoBehaviour {
 
 
         }
-        
-       moveInputX = Input.GetAxisRaw("Horizontal");
-       tran.Translate(moveInputX * speed * Time.deltaTime, 0, 0);
-        if (Input.GetKeyDown("d")) {
-            Invoke("SpeedMovement" , 0.2f);
+
+        moveInputX = Input.GetAxisRaw("Horizontal");
+        tran.Translate(moveInputX * speed * Time.deltaTime, 0, 0);
+        if (Input.GetKeyDown("d"))
+        {
+            Invoke("SpeedMovement", 0.2f);
 
         }
-        if (Input.GetKeyUp("d")) {
+        if (Input.GetKeyUp("d"))
+        {
             speed = 10;
 
 
@@ -78,7 +83,8 @@ public class NewBehaviourScript : MonoBehaviour {
 
 
     }
-    void SpeedMovement() {
+    void SpeedMovement()
+    {
         speed = 15;
 
 
