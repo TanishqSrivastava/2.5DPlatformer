@@ -678,10 +678,10 @@ MonoBehaviour:
   tran: {fileID: 0}
   rb: {fileID: 0}
   fallMultiplier: 2
-  jumpSpeed: 2
+  jumpSpeed: 10
   isGrounded: 0
   xVel: 0
-  gravity: -10
+  gravity: -20
   speed: 0
 --- !u!136 &1909387226
 CapsuleCollider:

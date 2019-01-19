@@ -11,6 +11,7 @@ public class NewBehaviourScript : MonoBehaviour
     public float fallMultiplier = 2;
     public float jumpSpeed;
     public bool isGrounded;
+    private bool secondJumpAvail = false;
     public float xVel;
     public float gravity;
     public float speed;
@@ -44,8 +45,20 @@ public class NewBehaviourScript : MonoBehaviour
         {
             isGrounded = false;
             rb.velocity = Vector3.up * jumpSpeed;
+            secondJumpAvail = true;
+        }
+        else
+        {
+            if (Input.GetKeyDown("w")) {
+                if (secondJumpAvail)
+                {
+                    rb.velocity = Vector3.up * jumpSpeed;
+                    secondJumpAvail = false;
+                }
+            
+            }
 
-
+            
         }
         if (rb.velocity.y < 0)
         {
