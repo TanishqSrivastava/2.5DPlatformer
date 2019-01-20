@@ -93,14 +93,6 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
 
-        if (rb.position.y < -1f)
-        {
-
-            FindObjectOfType<endgame>().EndGame();
-            SceneManager.LoadScene("Platformer");
-        }
-
-
 
 
     }
