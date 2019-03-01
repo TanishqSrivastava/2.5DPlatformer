@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+
 public class NewBehaviourScript : MonoBehaviour
 {
     private float moveInputX;
@@ -13,10 +16,14 @@ public class NewBehaviourScript : MonoBehaviour
     public float xVel;
     public float gravity;
     public float speed;
+    public AbhinavFollow fol;
+    public Text livesString;
+    public float lives;       // livesString will be converted to float to be stored in this variable
     // Use this for initialization
     void Start()
     {
-
+        lives = 5;
+        fol = FindObjectOfType<AbhinavFollow>();
         tran = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
         speed = 10;
@@ -31,8 +38,29 @@ public class NewBehaviourScript : MonoBehaviour
 
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "TriggerCameraStop") {
+            fol.target = null;
+
+
+
+        }
+    }
     void Update()
     {
+        if (livesString.text == "1" && transform.position.y < -12.70) {
+            Destroy(gameObject);
+            SceneManager.LoadScene("GameOver");
+            
+
+        }
+        livesString.text = lives.ToString();
+        if (transform.position.y < -12.73) {       // Respawning whenever the character 
+            Respawn();                                       // reaches a certain point on the -y axis 
+
+
+        }
         Physics.gravity = new Vector3(0, gravity, 0);
         if (isGrounded == false && Input.GetKeyDown("w"))
         {
@@ -92,6 +120,12 @@ public class NewBehaviourScript : MonoBehaviour
 
 
 
+
+    }
+    void Respawn() {
+        transform.position = new Vector3(-52f, 2.3f, -5.42f);   
+        fol.target = gameObject.transform;   //Set the target of the AbhinavFollow script back to what it was before
+        lives--;                             // so that the player could respawn WITHOUT reloading the scene
 
     }
     void SpeedMovement()
