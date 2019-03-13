@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public GameManager gm;
+    
     public Transform Enemy;
     public bool LastEnemyAttack;
     public bool setSpeedTenOrTwenty;
@@ -31,7 +33,17 @@ public class NewBehaviourScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (Lives.CurLives == 0)
+        {
+            Lives.CurLives = 5;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+
+
+
+        }
         lives = 5;
+        gm = FindObjectOfType<GameManager>();
         
         fol = FindObjectOfType<AbhinavFollow>();
         tran = GetComponent<Transform>();
@@ -62,12 +74,12 @@ public class NewBehaviourScript : MonoBehaviour
             if (transform.position.x < collision.collider.transform.position.x)
             {
                 rb.AddForce(-100000 * Time.deltaTime, 0, 0);
-                lives--;
+                Lives.CurLives--;
             }
             if (transform.position.x > collision.collider.transform.position.x)
             {
                 rb.AddForce(100000 * Time.deltaTime, 0, 0);
-                lives--;
+                Lives.CurLives--;
             }
 
         }
@@ -90,8 +102,8 @@ public class NewBehaviourScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-       
 
+        
         Debug.Log(speed);
 
         if (livesString.text == "1" && transform.position.y < -12.70)
@@ -103,7 +115,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
           
              
-        livesString.text = lives.ToString();
+        livesString.text = Lives.CurLives.ToString();
         if (transform.position.y < -12.73) {       // Respawning whenever the character 
             Respawn();                                       // reaches a certain point on the -y axis 
 
@@ -163,9 +175,11 @@ public class NewBehaviourScript : MonoBehaviour
 
     }
     void Respawn() {
-        transform.position = new Vector3(-52, 2.3f, -5.42f);   
+        // transform.position = new Vector3(-52, 2.3f, -5.42f);   
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
         fol.target = gameObject.transform;   //Set the target of the AbhinavFollow script back to what it was before
-        lives--;
+        Lives.CurLives--;
         // so that the player could respawn WITHOUT reloading the scene
 
     }

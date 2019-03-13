@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6188565892848656004}
   - component: {fileID: 6188565892848656058}
   - component: {fileID: 6188565892848656005}
-  - component: {fileID: 6188565892848656057}
+  - component: {fileID: 4674346676826304529}
   m_Layer: 0
   m_Name: enemy4
   m_TagString: Enemy
@@ -92,8 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5639c4405dda62445a2cbeed1b7b027a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRb: {fileID: 7535222225739399773, guid: 6563825d68da0a1429d474d782212ba4,
-    type: 3}
   EnemySpeed: 2
   turnRight: 0
   turnLeft: 0
@@ -111,7 +109,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6188565892848656057
+--- !u!54 &4674346676826304529
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,5 +123,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 0
   m_CollisionDetection: 0
