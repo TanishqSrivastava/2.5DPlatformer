@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Ground
   - TriggerCameraStop
+  - EnemyTurn
+  - EnemyZoneLeft
+  - EnemyZoneRight
+  - PowerUpSpeed
+  - Enemy
   layers:
   - Default
   - TransparentFX

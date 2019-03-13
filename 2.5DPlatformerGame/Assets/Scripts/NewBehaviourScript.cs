@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public Transform Enemy;
+    public bool LastEnemyAttack;
+    public bool setSpeedTenOrTwenty;
     private float moveInputX;
     private float moveInputNegatX;
     public Transform tran;
@@ -19,14 +22,21 @@ public class NewBehaviourScript : MonoBehaviour
     public AbhinavFollow fol;
     public Text livesString;
     public float lives;       // livesString will be converted to float to be stored in this variable
+    public bool onGroundTop;
+    public bool lastEnemyAttack {
+        get { return LastEnemyAttack;
+        }
+
+    }
     // Use this for initialization
     void Start()
     {
         lives = 5;
+        
         fol = FindObjectOfType<AbhinavFollow>();
         tran = GetComponent<Transform>();
-        rb = GetComponent<Rigidbody>();
         speed = 10;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -35,8 +45,35 @@ public class NewBehaviourScript : MonoBehaviour
         if (collision.collider.tag == "Ground")
         {
             isGrounded = true;
+            Debug.Log("I am noticing a ground");
 
         }
+        if (collision.collider.tag == "PowerUpSpeed")
+        {
+            speed = 15;
+            Invoke("ChangeBackToNormal", 5f);
+
+        }
+        if (collision.collider.tag == "Enemy") {
+            if (transform.position.x < collision.collider.transform.position.x)
+            {
+                rb.AddForce(-100000 * Time.deltaTime, 0, 0);
+                lives--;
+            }
+            if (transform.position.x > collision.collider.transform.position.x)
+            {
+                rb.AddForce(100000 * Time.deltaTime, 0, 0);
+                lives--;
+            }
+
+        }
+        if (collision.collider.tag == "Enemy" && livesString.text == "1") {
+            Destroy(gameObject);
+            SceneManager.LoadScene("GameOver");
+
+        }
+        
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -47,14 +84,21 @@ public class NewBehaviourScript : MonoBehaviour
 
         }
     }
-    void Update()
+    void FixedUpdate()
     {
-        if (livesString.text == "1" && transform.position.y < -12.70) {
+       
+
+        Debug.Log(speed);
+
+        if (livesString.text == "1" && transform.position.y < -12.70)
+        {
             Destroy(gameObject);
             SceneManager.LoadScene("GameOver");
-            
+
 
         }
+          
+             
         livesString.text = lives.ToString();
         if (transform.position.y < -12.73) {       // Respawning whenever the character 
             Respawn();                                       // reaches a certain point on the -y axis 
@@ -67,6 +111,7 @@ public class NewBehaviourScript : MonoBehaviour
 
 
         }
+        
         if (Input.GetKeyDown("w") && isGrounded == true)
         {
             isGrounded = false;
@@ -86,6 +131,7 @@ public class NewBehaviourScript : MonoBehaviour
 
             
         }
+        
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -97,35 +143,32 @@ public class NewBehaviourScript : MonoBehaviour
         tran.Translate(moveInputX * speed * Time.deltaTime, 0, 0);
         if (Input.GetKeyDown("d"))
         {
-            Invoke("SpeedMovement", 0.2f);
+           // Invoke("SpeedMovement", 0.2f);
 
         }
-        if (Input.GetKeyUp("d"))
-        {
-            speed = 10;
-
-
-        }
+        
         if (Input.GetKeyDown("a"))
         {
-            Invoke("SpeedMovement", 0.2f);
+           // Invoke("SpeedMovement", 0.2f);
 
         }
-        if (Input.GetKeyUp("a"))
-        {
-            speed = 10;
-
-
-        }
+       
 
 
 
 
     }
     void Respawn() {
-        transform.position = new Vector3(-52f, 2.3f, -5.42f);   
+        transform.position = new Vector3(-52, 2.3f, -5.42f);   
         fol.target = gameObject.transform;   //Set the target of the AbhinavFollow script back to what it was before
-        lives--;                             // so that the player could respawn WITHOUT reloading the scene
+        lives--;
+        // so that the player could respawn WITHOUT reloading the scene
+
+    }
+    void ChangeBackToNormal()
+    {
+        speed = 10;
+
 
     }
     void SpeedMovement()
@@ -134,4 +177,5 @@ public class NewBehaviourScript : MonoBehaviour
 
 
     }
+    
 }
