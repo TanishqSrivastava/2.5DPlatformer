@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class script : MonoBehaviour
 {
+    public float RandomSide;
     public bool changeSpeed;
     public Rigidbody rbOfPowerup;
     public NewBehaviourScript playerScript;
     // Start is called before the first frame update
     void Start()
     {
+        RandomSide = Random.Range(1, 2);
+        Debug.Log(RandomSide);
         rbOfPowerup = GetComponent<Rigidbody>();
         playerScript = FindObjectOfType<NewBehaviourScript>();
     }
@@ -17,14 +20,19 @@ public class script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-          
 
 
-        
-        rbOfPowerup.AddForce(-500 * Time.deltaTime, 0, 0);
 
+
+        if (RandomSide == 1)
+        {
+
+            rbOfPowerup.AddForce(-750 *Time.deltaTime, 0, 0);
+        }else if (RandomSide == 2)
+        {
+
+            rbOfPowerup.AddForce(750 *Time.deltaTime, 0, 0);
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
