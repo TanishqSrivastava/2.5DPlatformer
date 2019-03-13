@@ -54,6 +54,10 @@ public class NewBehaviourScript : MonoBehaviour
             Invoke("ChangeBackToNormal", 5f);
 
         }
+        if (collision.collider.tag == "PowerUpJumpBoost") {
+            jumpSpeed = 15;
+            Invoke("ChangeBackToNormalJumpBoost", 2f);
+        }
         if (collision.collider.tag == "Enemy") {
             if (transform.position.x < collision.collider.transform.position.x)
             {
@@ -174,6 +178,11 @@ public class NewBehaviourScript : MonoBehaviour
     void SpeedMovement()
     {
         speed = 15;
+
+
+    }
+    void ChangeBackToNormalJumpBoost() {
+        jumpSpeed = 10;
 
 
     }
