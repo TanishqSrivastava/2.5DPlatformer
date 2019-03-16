@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 public class NewBehaviourScript : MonoBehaviour
 {
     public GameManager gm;
-    
+
     public Transform Enemy;
     public bool LastEnemyAttack;
     public bool setSpeedTenOrTwenty;
@@ -44,7 +45,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
         lives = 5;
         gm = FindObjectOfType<GameManager>();
-        
+
         fol = FindObjectOfType<AbhinavFollow>();
         tran = GetComponent<Transform>();
         speed = 10;
@@ -88,7 +89,7 @@ public class NewBehaviourScript : MonoBehaviour
             SceneManager.LoadScene("GameOver");
 
         }
-        
+
 
     }
     private void OnTriggerEnter(Collider other)
@@ -103,7 +104,7 @@ public class NewBehaviourScript : MonoBehaviour
     void FixedUpdate()
     {
 
-        
+
         Debug.Log(speed);
 
         if (livesString.text == "1" && transform.position.y < -12.70)
@@ -113,8 +114,8 @@ public class NewBehaviourScript : MonoBehaviour
 
 
         }
-          
-             
+
+
         livesString.text = Lives.CurLives.ToString();
         if (transform.position.y < -12.73) {       // Respawning whenever the character 
             Respawn();                                       // reaches a certain point on the -y axis 
@@ -127,7 +128,7 @@ public class NewBehaviourScript : MonoBehaviour
 
 
         }
-        
+
         if (Input.GetKeyDown("w") && isGrounded == true)
         {
             isGrounded = false;
@@ -142,12 +143,12 @@ public class NewBehaviourScript : MonoBehaviour
                     rb.velocity = Vector3.up * jumpSpeed;
                     secondJumpAvail = false;
                 }
-            
+
             }
 
-            
+
         }
-        
+
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -159,25 +160,35 @@ public class NewBehaviourScript : MonoBehaviour
         tran.Translate(moveInputX * speed * Time.deltaTime, 0, 0);
         if (Input.GetKeyDown("d"))
         {
-           // Invoke("SpeedMovement", 0.2f);
+            // Invoke("SpeedMovement", 0.2f);
 
         }
-        
+
         if (Input.GetKeyDown("a"))
         {
-           // Invoke("SpeedMovement", 0.2f);
+            // Invoke("SpeedMovement", 0.2f);
 
         }
-       
+        if (Input.GetKeyDown("l")) {
+            CheatDev();
+
+
+        }
+
 
 
 
 
     }
+    void CheatDev() {
+        Lives.CurLives = 10;
+
+    }
     void Respawn() {
         // transform.position = new Vector3(-52, 2.3f, -5.42f);   
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         fol.target = gameObject.transform;   //Set the target of the AbhinavFollow script back to what it was before
         Lives.CurLives--;
         // so that the player could respawn WITHOUT reloading the scene
