@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public AudioClip jumpClip;
     public GameManager gm;
-
+    public AudioSource jumpSound;
     public Transform Enemy;
     public bool LastEnemyAttack;
     public bool setSpeedTenOrTwenty;
@@ -33,7 +34,10 @@ public class NewBehaviourScript : MonoBehaviour
     }
     // Use this for initialization
     void Start()
+
     {
+        
+        jumpSound = GetComponent<AudioSource>();
         if (Lives.CurLives == 0)
         {
             Lives.CurLives = 5;
@@ -55,6 +59,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     private void OnCollisionEnter(Collision collision)
     {
+        
         if (collision.collider.tag == "Ground")
         {
             isGrounded = true;
@@ -104,8 +109,8 @@ public class NewBehaviourScript : MonoBehaviour
     void FixedUpdate()
     {
 
-
-        Debug.Log(speed);
+        
+            Debug.Log(speed);
 
         if (livesString.text == "1" && transform.position.y < -12.70)
         {
@@ -131,15 +136,17 @@ public class NewBehaviourScript : MonoBehaviour
 
         if (Input.GetKeyDown("w") && isGrounded == true)
         {
+            jumpSound.PlayOneShot(jumpSound.clip);
             isGrounded = false;
             rb.velocity = Vector3.up * jumpSpeed;
-            secondJumpAvail = true;
+            secondJumpAvail = true;    
         }
         else
         {
             if (Input.GetKeyDown("w")) {
                 if (secondJumpAvail)
                 {
+                    jumpSound.PlayOneShot(jumpSound.clip);
                     rb.velocity = Vector3.up * jumpSpeed;
                     secondJumpAvail = false;
                 }
@@ -148,7 +155,7 @@ public class NewBehaviourScript : MonoBehaviour
 
 
         }
-
+        
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
