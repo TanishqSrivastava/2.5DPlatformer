@@ -12,6 +12,7 @@ TagManager:
   - PowerUpSpeed
   - Enemy
   - PowerUpJumpBoost
+  - BugPreventionJumpPlat
   layers:
   - Default
   - TransparentFX
