@@ -979,7 +979,7 @@ Transform:
   m_RootOrder: 24
 
   m_RootOrder: 37
->
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &454924372
 GameObject:
@@ -2250,7 +2250,7 @@ Transform:
   m_RootOrder: 23
 
   m_RootOrder: 36
->
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1259551641
 GameObject:
@@ -3185,7 +3185,7 @@ Transform:
   m_RootOrder: 26
 
   m_RootOrder: 39
->
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1907157421
 PrefabInstance:
