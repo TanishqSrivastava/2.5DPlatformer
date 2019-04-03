@@ -4,17 +4,17 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Water_Simple_01_Mat
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON _DETAIL_MULX2 _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -97,10 +97,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Absorption: 0.5
+    - _AlphaClip: 0
     - _Anisotropy: 0.5
     - _Bias: 0
+    - _Blend: 0
     - _Blur: 0.25
     - _BumpScale: 1
+    - _Cull: 2
     - _Cutoff: 0.5
     - _Depth: 1
     - _DepthBlur: 4
@@ -126,6 +129,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Power: 2
+    - _ReceiveShadows: 1
     - _Scale: 1
     - _ScumFalloff: 5
     - _ScumNoiseContrast: 1
@@ -140,6 +144,7 @@ Material:
     - _SpecularHighlights: 1
     - _Speed: 0.01
     - _SrcBlend: 5
+    - _Surface: 0
     - _Turbulence: 0.111
     - _UVSec: 0
     - _Visibility: 0
@@ -147,6 +152,7 @@ Material:
     - _WaveFrequency: 1
     - _WaveHeight: 0.0002
     - _WaveLength: 0
+    - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 0.05829476, g: 0.09433961, b: 0.05829476, a: 0.7607843}
